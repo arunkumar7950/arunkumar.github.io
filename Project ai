@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Tools Web App | Arun Kumar</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{--bg:#020917;--bg2:#0a1628;--bg3:#0f1f38;--accent:#00d4ff;--accent2:#7c3aed;--accent3:#06ffa5;--text:#e2e8f0;--muted:#64748b;--border:rgba(0,212,255,0.15);--card:rgba(10,22,40,0.8);}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Sora',sans-serif;line-height:1.7;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,0.03)1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.03)1px,transparent 1px);background-size:50px 50px;pointer-events:none;z-index:0;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(2,9,23,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 40px;height:64px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:'Space Mono',monospace;color:var(--accent);font-size:16px;font-weight:700;text-decoration:none;}
+.nav-logo span{color:var(--text);}
+.back-btn{display:inline-flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:14px;font-weight:600;transition:color .3s;}
+.back-btn:hover{color:var(--accent);}
+main{position:relative;z-index:1;padding-top:64px;max-width:900px;margin:0 auto;padding-left:40px;padding-right:40px;}
+.hero-section{padding:60px 0 40px;}
+.project-tag-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.tag{font-size:11px;font-family:'Space Mono',monospace;color:var(--accent);background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);border-radius:4px;padding:4px 10px;letter-spacing:.05em;}
+.tag.purple{color:#a78bfa;background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.25);}
+.tag.green{color:var(--accent3);background:rgba(6,255,165,0.08);border-color:rgba(6,255,165,0.2);}
+h1{font-size:clamp(28px,4vw,48px);font-weight:700;line-height:1.15;margin-bottom:16px;}
+h1 span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.subtitle{color:var(--muted);font-size:18px;margin-bottom:32px;line-height:1.7;}
+.project-img{width:100%;border-radius:16px;border:1px solid var(--border);margin:32px 0;object-fit:cover;max-height:420px;display:block;background:var(--bg3);}
+.project-img-fallback{width:100%;height:300px;border-radius:16px;border:1px solid var(--border);margin:32px 0;background:linear-gradient(135deg,var(--bg3),var(--bg2));display:flex;align-items:center;justify-content:center;font-size:80px;}
+.section-block{margin:48px 0;}
+.section-block h2{font-size:22px;font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.section-block h2::before{content:'';width:4px;height:22px;background:linear-gradient(180deg,var(--accent),var(--accent2));border-radius:4px;display:block;}
+p{color:var(--muted);font-size:16px;line-height:1.9;margin-bottom:16px;}
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
+.feature-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;}
+.feature-card .icon{font-size:28px;margin-bottom:10px;}
+.feature-card h3{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.feature-card p{font-size:13px;margin:0;}
+.tech-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;}
+.outcomes{display:flex;flex-direction:column;gap:12px;}
+.outcome-item{display:flex;align-items:flex-start;gap:12px;padding:16px;background:var(--card);border:1px solid var(--border);border-radius:10px;}
+.outcome-item i{color:var(--accent3);margin-top:2px;flex-shrink:0;}
+.outcome-item span{font-size:15px;color:var(--text);}
+.hackathon-banner{background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(0,212,255,0.08));border:1px solid rgba(124,58,237,0.3);border-radius:14px;padding:24px;margin:24px 0;display:flex;gap:16px;align-items:center;}
+.hackathon-banner .icon{font-size:40px;flex-shrink:0;}
+.hackathon-banner h3{font-size:17px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.hackathon-banner p{font-size:14px;margin:0;color:var(--muted);}
+.cta-row{display:flex;gap:16px;flex-wrap:wrap;margin:48px 0 60px;}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#000;padding:14px 28px;border-radius:8px;font-weight:700;font-size:15px;text-decoration:none;transition:all .3s;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,212,255,0.3);}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;background:var(--accent2);color:#fff;padding:14px 28px;border-radius:8px;font-weight:700;font-size:15px;text-decoration:none;transition:all .3s;}
+.btn-secondary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(124,58,237,0.35);}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text);padding:14px 28px;border-radius:8px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid var(--border);transition:all .3s;}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+.nav-projects{display:flex;gap:16px;margin:0 0 60px;padding:28px;background:var(--card);border:1px solid var(--border);border-radius:16px;justify-content:space-between;flex-wrap:wrap;}
+.nav-proj-link{text-decoration:none;color:var(--text);font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px;transition:color .3s;}
+.nav-proj-link:hover{color:var(--accent);}
+@media(max-width:600px){main{padding-left:20px;padding-right:20px;}nav{padding:0 20px;}.cta-row{flex-direction:column;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">AK<span>.</span></a>
+  <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</a>
+</nav>
+<main>
+  <div class="hero-section">
+    <div class="project-tag-row">
+      <span class="tag purple">Hackathon Project</span>
+      <span class="tag">Python</span>
+      <span class="tag">AI / ML</span>
+      <span class="tag green">Web App</span>
+      <span class="tag">Real-time</span>
+    </div>
+    <h1>AI Tools<br><span>Web Application</span></h1>
+    <p class="subtitle">A responsive real-time web application featuring interactive AI tools with an optimized user interface — developed during a hackathon to unify AI capabilities in one platform.</p>
+  </div>
+
+  <img src="ai.jpg" alt="AI Tools Web App" class="project-img" onerror="this.style.display='none';document.getElementById('img-fallback-3').style.display='flex'">
+  <div id="img-fallback-3" class="project-img-fallback" style="display:none">🧠</div>
+
+  <div class="hackathon-banner">
+    <div class="icon">🏆</div>
+    <div>
+      <h3>Hackathon Project</h3>
+      <p>This project was developed under hackathon conditions — built for speed, real-time performance, and optimized UX under time pressure.</p>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <h2>Project Overview</h2>
+    <p>This web application was developed to make AI tools accessible through a clean, user-friendly interface. The platform consolidates multiple AI capabilities into a single responsive web app, allowing users to interact with AI features without requiring technical knowledge.</p>
+    <p>Built with a focus on real-time processing and low-latency responses, the application was designed to handle user input efficiently and deliver AI-powered results quickly — a critical requirement in a hackathon setting.</p>
+  </div>
+
+  <div class="section-block">
+    <h2>Key Features</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="icon">🤖</div>
+        <h3>Interactive AI Tools</h3>
+        <p>Multiple AI-powered features accessible from a single, intuitive interface.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">⚡</div>
+        <h3>Real-time Processing</h3>
+        <p>Quick response times for AI queries with optimized backend processing.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📱</div>
+        <h3>Fully Responsive</h3>
+        <p>Works seamlessly across desktop, tablet, and mobile devices.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🎨</div>
+        <h3>Optimized UI/UX</h3>
+        <p>Clean, modern interface designed for ease of use and accessibility.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <h2>Technologies Used</h2>
+    <div class="tech-row">
+      <span class="tag">Python</span>
+      <span class="tag">HTML / CSS / JS</span>
+      <span class="tag">AI/ML Libraries</span>
+      <span class="tag">REST APIs</span>
+      <span class="tag">Flask / FastAPI</span>
+      <span class="tag">Responsive Design</span>
+      <span class="tag">Real-time Processing</span>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <h2>What I Learned</h2>
+    <div class="outcomes">
+      <div class="outcome-item"><i class="fa-solid fa-check-circle"></i><span>Building full-stack web applications with Python backends</span></div>
+      <div class="outcome-item"><i class="fa-solid fa-check-circle"></i><span>Integrating AI/ML models into web interfaces for real-time use</span></div>
+      <div class="outcome-item"><i class="fa-solid fa-check-circle"></i><span>Rapid prototyping and development under hackathon time constraints</span></div>
+      <div class="outcome-item"><i class="fa-solid fa-check-circle"></i><span>UI/UX design principles for AI-powered applications</span></div>
+      <div class="outcome-item"><i class="fa-solid fa-check-circle"></i><span>API design and real-time data handling in web applications</span></div>
+    </div>
+  </div>
+
+  <div class="cta-row">
+    <a href="https://github.com/arunkumar7950" target="_blank" class="btn-primary"><i class="fa-brands fa-github"></i> View on GitHub</a>
+    <a href="#" class="btn-secondary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+    <a href="index.html" class="btn-outline"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</a>
+  </div>
+
+  <div class="nav-projects">
+    <a href="project-robot.html" class="nav-proj-link"><i class="fa-solid fa-arrow-left"></i> Surveillance Robot</a>
+    <span style="color:var(--muted);font-size:13px;align-self:center">Other Projects</span>
+    <a href="project-accident.html" class="nav-proj-link">Accident Detection <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+</main>
+</body>
+</html>
