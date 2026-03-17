@@ -381,7 +381,7 @@ body.light .fc,.body.light .li{background:rgba(255,255,255,.95);}
 
       <div class="pc rev" onclick="openM('accident')">
         <div class="pimgw">
-          <img src="robot.jpg" alt="Accident Detection" style="object-fit:cover;object-position:center 10%;" onerror="this.classList.add('hidden');this.nextElementSibling.style.display='flex'">
+          <img src="accident.jpg" alt="Accident Detection" style="object-fit:cover;object-position:center 15%;" onerror="this.classList.add('hidden');this.nextElementSibling.style.display='flex'">
           <div class="pfb" style="display:none">🚨</div>
           <div class="pov"><span class="phint">Click for full details →</span></div>
         </div>
@@ -398,7 +398,7 @@ body.light .fc,.body.light .li{background:rgba(255,255,255,.95);}
 
       <div class="pc rev" onclick="openM('robot')">
         <div class="pimgw">
-          <img src="accident.jpg" alt="Surveillance Robot" style="object-fit:cover;object-position:center;transform:scale(1.15);transform-origin:center;" onerror="this.classList.add('hidden');this.nextElementSibling.style.display='flex'">
+          <img src="robot.jpg" alt="Surveillance Robot" style="object-fit:cover;object-position:center;" onerror="this.classList.add('hidden');this.nextElementSibling.style.display='flex'">
           <div class="pfb" style="display:none">🤖</div>
           <div class="pov"><span class="phint">Click for full details →</span></div>
         </div>
@@ -572,9 +572,6 @@ body.light .fc,.body.light .li{background:rgba(255,255,255,.95);}
         </div>
       </div>
       <div class="rev">
-        <div style="padding:11px 15px;background:rgba(6,255,165,.06);border:1px solid rgba(6,255,165,.2);border-radius:9px;margin-bottom:13px;font-size:13px;color:var(--accent3);display:flex;align-items:center;gap:8px">
-          <i class="fa-solid fa-bolt"></i>Messages go directly to Gmail — no setup needed!
-        </div>
         <form class="cform" id="cform" onsubmit="sendMsg(event)">
           <div class="fg"><label>Your Name</label><input type="text" id="fn" placeholder="John Doe" required></div>
           <div class="fg"><label>Your Email</label><input type="email" id="fe" placeholder="john@example.com" required></div>
@@ -606,7 +603,7 @@ body.light .fc,.body.light .li{background:rgba(255,255,255,.95);}
 <script>
 const PD = {
   accident:{
-    img:'robot.jpg',fb:'🚨',
+    img:'accident.jpg',fb:'🚨',
     tags:['NodeMCU ESP8266','MPU6050','MQ Alcohol Sensor','Temperature Sensor','Telegram Bot','LCD 16x2','Buzzer','Arduino IDE','C++','IoT'],
     title:'Accident Detection &amp;',grad:'Alert System',
     sub:'An IoT-based safety system submitted to JNTUH that automatically detects vehicle accidents, drunk driving and engine overheating — sending instant Telegram alerts with all sensor data.',
@@ -622,7 +619,7 @@ const PD = {
     github:'https://github.com/arunkumar7950',demo:null
   },
   robot:{
-    img:'accident.jpg',fb:'🤖',
+    img:'robot.jpg',fb:'🤖',
     tags:['Arduino','Raspberry Pi','ESP8266','ESP32','STM32','ARM Cortex','Wi-Fi','Camera','PIR Sensor','IoT'],
     title:'Wireless Surveillance',grad:'Robot',
     sub:'An IoT-powered wireless robot with live video streaming and motion detection for real-time remote security monitoring — solving the limitations of traditional static surveillance systems.',
@@ -733,6 +730,7 @@ async function sendMsg(e){
   btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
   btn.disabled=true;
   msg.className='fmsg';
+  msg.style.display='none';
   try{
     const res=await fetch('https://formsubmit.co/ajax/kondaarunkumar7950@gmail.com',{
       method:'POST',
@@ -745,14 +743,19 @@ async function sendMsg(e){
       btn.style.background='linear-gradient(135deg,#06ffa5,#059669)';
       msg.textContent='✅ Message sent! Arun will reply soon.';
       msg.className='fmsg ok';
+      msg.style.display='block';
       document.getElementById('cform').reset();
       setTimeout(()=>{btn.innerHTML='<i class="fa-solid fa-paper-plane"></i>Send Message';btn.style.background='';btn.disabled=false;},4000);
     }else throw new Error();
   }catch{
+    // Fallback: open Gmail directly with message pre-filled
     btn.innerHTML='<i class="fa-solid fa-paper-plane"></i>Send Message';
     btn.disabled=false;
-    msg.innerHTML='❌ Could not send. Email: <a href="mailto:kondaarunkumar7950@gmail.com" style="color:inherit">kondaarunkumar7950@gmail.com</a>';
-    msg.className='fmsg err';
+    const gmailLink=`mailto:kondaarunkumar7950@gmail.com?subject=Portfolio message from ${encodeURIComponent(name)}&body=${encodeURIComponent('Name: '+name+'\nEmail: '+email+'\n\nMessage:\n'+text)}`;
+    window.location.href=gmailLink;
+    msg.innerHTML='📧 Opening your email app to send directly...';
+    msg.className='fmsg ok';
+    msg.style.display='block';
   }
 }
 
