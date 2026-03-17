@@ -210,6 +210,24 @@ section{padding:90px 0;}
 .cert-modal-close{position:absolute;top:14px;right:14px;background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.25);color:var(--accent);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .2s;}
 .cert-modal-close:hover{background:rgba(0,212,255,.2);}
 
+/* MEET ME SECTION */
+.meet-me-container{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;max-width:1100px;margin:0 auto;padding:0 5%;}
+.meet-me-img{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 24px 80px rgba(0,212,255,.2);}
+.meet-me-img img{width:100%;height:auto;display:block;border:1px solid rgba(0,212,255,.15);}
+.meet-me-content h2{font-size:clamp(28px,4vw,42px);font-weight:700;margin-bottom:16px;line-height:1.2;}
+.meet-me-content p{color:var(--muted);font-size:16px;line-height:1.85;margin-bottom:20px;}
+.meet-me-list{display:flex;flex-direction:column;gap:14px;margin-bottom:32px;}
+.meet-me-item{display:flex;align-items:flex-start;gap:12px;}
+.meet-me-item i{color:var(--accent3);font-size:18px;margin-top:2px;flex-shrink:0;}
+.meet-me-item span{color:var(--text);font-size:15px;line-height:1.6;}
+.meet-me-footer{color:var(--muted);font-size:14px;font-style:italic;padding-top:16px;border-top:1px solid rgba(0,212,255,.1);}
+
+@media(max-width:768px){
+  .meet-me-container{grid-template-columns:1fr;gap:32px;}
+  .meet-me-content{order:2;}
+  .meet-me-img{order:1;}
+}
+
 /* HOBBIES */
 .hrow{display:flex;flex-wrap:wrap;gap:12px;}
 .hob{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);border-radius:100px;padding:10px 18px;font-size:14px;font-weight:500;color:var(--text);transition:all .3s;}
@@ -580,6 +598,50 @@ body.light .fc,.body.light .li{background:rgba(255,255,255,.95);}
     </div>
   </div>
 </div>
+
+<!-- MEET ME SECTION -->
+<section style="padding:90px 0;">
+  <div class="meet-me-container rev">
+    
+    <!-- LEFT: Large Image -->
+    <div class="meet-me-img">
+      <img src="meet-me.jpg" alt="Konda Arun Kumar">
+    </div>
+
+    <!-- RIGHT: Content -->
+    <div class="meet-me-content">
+      <h2>Let me <span class="gr">introduce myself</span> 👋</h2>
+      
+      <p>I'm Arun, an ECE student from Hyderabad passionate about turning ideas into reality through code and hardware. Whether it's building IoT systems, designing VLSI architectures, or creating AI-powered web apps, I love the challenge of bringing innovation to life.</p>
+
+      <p>Beyond the tech stack, I'm someone who believes in continuous learning and collaboration. I've worked on diverse projects across embedded systems, robotics, and AI — each teaching me something valuable about problem-solving and teamwork.</p>
+
+      <div class="meet-me-list">
+        <div class="meet-me-item">
+          <i class="fa-solid fa-code"></i>
+          <span><strong>Full Stack Builder</strong> — Hardware to web, I enjoy every layer</span>
+        </div>
+        <div class="meet-me-item">
+          <i class="fa-solid fa-brain"></i>
+          <span><strong>AI Enthusiast</strong> — Exploring ML, neural networks, and real-world applications</span>
+        </div>
+        <div class="meet-me-item">
+          <i class="fa-solid fa-users"></i>
+          <span><strong>Team Player</strong> — Love collaborating and sharing knowledge</span>
+        </div>
+        <div class="meet-me-item">
+          <i class="fa-solid fa-rocket"></i>
+          <span><strong>Always Learning</strong> — Diving deep into new technologies constantly</span>
+        </div>
+      </div>
+
+      <p class="meet-me-footer">
+        When I'm not coding, you'll find me at the gym, gaming, listening to music, or tinkering with hardware projects. 🎧
+      </p>
+    </div>
+
+  </div>
+</section>
 
 <!-- HOBBIES -->
 <section style="padding-top:0;padding-bottom:60px">
